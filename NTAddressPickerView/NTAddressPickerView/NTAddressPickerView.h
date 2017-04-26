@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^CancelBlock)(void);
+typedef void(^ConfirmBlock)(void);
+
 @interface NTAddressPickerView : UIView
+
++ (void)showAddressPickerViewWithAnimated :(BOOL)animated cancelAction: (CancelBlock)cancelBlock confirmBlock: (ConfirmBlock)confirmBlock;
 
 @end
