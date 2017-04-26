@@ -13,6 +13,7 @@
 		6A9AF37B1EB072EA00B0F312 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A9AF3791EB072EA00B0F312 /* Main.storyboard */; };
 		6A9AF37D1EB072EA00B0F312 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A9AF37C1EB072EA00B0F312 /* Assets.xcassets */; };
 		6A9AF3801EB072EA00B0F312 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A9AF37E1EB072EA00B0F312 /* LaunchScreen.storyboard */; };
+		6A9AF38A1EB0735600B0F312 /* NTAddressPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A9AF3891EB0735600B0F312 /* NTAddressPickerView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,8 @@
 		6A9AF37C1EB072EA00B0F312 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6A9AF37F1EB072EA00B0F312 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6A9AF3811EB072EA00B0F312 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6A9AF3881EB0735600B0F312 /* NTAddressPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NTAddressPickerView.h; sourceTree = "<group>"; };
+		6A9AF3891EB0735600B0F312 /* NTAddressPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NTAddressPickerView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +61,7 @@
 		6A9AF36F1EB072EA00B0F312 /* NTAddressPickerView */ = {
 			isa = PBXGroup;
 			children = (
+				6A9AF3871EB0730800B0F312 /* NTAddressPickerView */,
 				6A9AF3731EB072EA00B0F312 /* AppDelegate.h */,
 				6A9AF3741EB072EA00B0F312 /* AppDelegate.m */,
 				6A9AF3761EB072EA00B0F312 /* ViewController.h */,
@@ -77,6 +81,15 @@
 				6A9AF3711EB072EA00B0F312 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6A9AF3871EB0730800B0F312 /* NTAddressPickerView */ = {
+			isa = PBXGroup;
+			children = (
+				6A9AF3881EB0735600B0F312 /* NTAddressPickerView.h */,
+				6A9AF3891EB0735600B0F312 /* NTAddressPickerView.m */,
+			);
+			path = NTAddressPickerView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -152,6 +165,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6A9AF3781EB072EA00B0F312 /* ViewController.m in Sources */,
+				6A9AF38A1EB0735600B0F312 /* NTAddressPickerView.m in Sources */,
 				6A9AF3751EB072EA00B0F312 /* AppDelegate.m in Sources */,
 				6A9AF3721EB072EA00B0F312 /* main.m in Sources */,
 			);
