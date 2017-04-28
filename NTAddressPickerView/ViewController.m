@@ -18,9 +18,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame = CGRectMake(50, 50, 100, 100);
+    [button setTitle:@"点击" forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(clickAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:button];
+}
+
+- (void)clickAction {
     [NTAddressPickerView showAddressPickerViewWithAnimated:YES cancelAction:^{
         
-    } confirmBlock:^{
+    } confirmBlock:^(NSString *province, NSString *town) {
+        NSLog(@"province: %@\ntown: %@",province,town);
         
     }];
 }

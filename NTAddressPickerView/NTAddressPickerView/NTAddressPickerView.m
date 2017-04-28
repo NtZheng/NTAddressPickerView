@@ -10,7 +10,7 @@
 
 #define NTDeviceSize [[UIScreen mainScreen] bounds].size
 #define NTAddressPickerViewHeight 200
-#define NTCurrentWindow [[[UIApplication sharedApplication] windows] lastObject]
+#define NTCurrentWindow [[UIApplication sharedApplication].windows lastObject]
 
 @interface NTAddressPickerView() <UIPickerViewDataSource, UIPickerViewDelegate>
 
@@ -21,7 +21,6 @@
 @property (nonatomic, strong) UIPickerView *pickerView;
 @property (nonatomic, strong) UIButton *leftButton;
 @property (nonatomic, strong) UIButton *rightButton;
-@property (nonatomic, strong) UIView *maskView;
 
 @property (nonatomic, copy) CancelBlock cancelBlock;
 @property (nonatomic, copy) ConfirmBlock confirmBlock;
@@ -34,6 +33,9 @@
     if (self = [super initWithFrame:frame]) {
         [self autoLayout];
         self.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.6];
+        // 背景添加事件
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(maskClickAction)];
+        [self addGestureRecognizer:tap];
     }
     return self;
 }
@@ -41,9 +43,9 @@
 #pragma mark - interface
 
 + (void)showAddressPickerViewWithAnimated :(BOOL)animated cancelAction: (CancelBlock)cancelBlock confirmBlock: (ConfirmBlock)confirmBlock {
-    NTAddressPickerView *addressPickerView = [[self alloc]initWithFrame:CGRectMake(0, 20 + 44, NTDeviceSize.width, NTDeviceSize.height - 20 - 44)];
-    // 动画操作
+    NTAddressPickerView *addressPickerView = [[self alloc]initWithFrame:CGRectMake(0, 0, NTDeviceSize.width, NTDeviceSize.height)];
     
+    // 动画操作
     if (animated) {
         addressPickerView.alpha = 0.0;
         [NTCurrentWindow addSubview:addressPickerView];
@@ -53,6 +55,7 @@
     } else {
         [NTCurrentWindow addSubview:addressPickerView];
     }
+    
     // 设置属性
     addressPickerView.cancelBlock = cancelBlock;
     addressPickerView.confirmBlock = confirmBlock;
@@ -127,15 +130,15 @@
     [self addSubview:self.baseContainerView];
     
     // 左边的按钮
-    self.leftButton.frame = CGRectMake(0, 0, 50, 20);
+    self.leftButton.frame = CGRectMake(0, 5, 50, 20);
     [self.baseContainerView addSubview:self.leftButton];
     
     // 右边的按钮
-    self.rightButton.frame = CGRectMake(NTDeviceSize.width - 50, 0, 50, 20);
+    self.rightButton.frame = CGRectMake(NTDeviceSize.width - 50, 5, 50, 20);
     [self.baseContainerView addSubview:self.rightButton];
     
     // 选择器
-    self.pickerView.frame = CGRectMake(0, 20, NTDeviceSize.width, NTAddressPickerViewHeight - 20);
+    self.pickerView.frame = CGRectMake(0, 25, NTDeviceSize.width, NTAddressPickerViewHeight - 25);
     [self.baseContainerView addSubview:self.pickerView];
 }
 
@@ -178,7 +181,18 @@
 }
 
 - (void)rightButtonAction {
-    self.confirmBlock();
+    // 第一列的值
+    NSInteger firstComponentRow = [self.pickerView selectedRowInComponent:0];
+    NSString *firstComponentText = self.provinceArray[firstComponentRow];
+    // 第二列的值
+    NSInteger secondComponentRow = [self.pickerView selectedRowInComponent:1];
+    NSString *secondComponentText = self.townArray[secondComponentRow];
+    [self hideWithAnimation:YES];
+    self.confirmBlock(firstComponentText, secondComponentText);
+}
+
+- (void)maskClickAction {
+    [self hideWithAnimation:YES];
 }
 
 #pragma mark - methods

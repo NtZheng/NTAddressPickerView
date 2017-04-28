@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 typedef void(^CancelBlock)(void);
-typedef void(^ConfirmBlock)(void);
+typedef void(^ConfirmBlock)(NSString *province, NSString *town);
 
 @interface NTAddressPickerView : UIView
 
